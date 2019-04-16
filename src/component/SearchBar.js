@@ -1,21 +1,27 @@
 import React, { Component } from "react";
-import RoboList from "./RoboList";
 
 class SearchBar extends Component {
   state = {
     term: ""
   };
 
+  onTyping = e => {
+    this.setState({ term: e.target.value });
+    this.props.onChange(e.target.value);
+  };
+
   render() {
     return (
-      <div className="ui container">
-        <form className="ui form">
-          <div class="field">
-            <label>Search</label>
-            <input type="text" placeholder="Robo Name" />
-          </div>
-        </form>
-      </div>
+      <form className="ui form">
+        <div className="field">
+          <label>Search</label>
+          <input
+            type="text"
+            placeholder="Search RoboName"
+            onChange={this.onTyping}
+          />
+        </div>
+      </form>
     );
   }
 }
