@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import SearchBar from "./SearchBar";
-import RoboList from "./RoboList";
-import { robots } from "./robots";
+import SearchBar from "../component/SearchBar";
+import RoboList from "../component/RoboList";
+import Scroll from "../component/Scroll";
 
 class App extends Component {
   state = {
-    robotList: robots,
+    robotList: [],
     searchTerm: ""
   };
 
@@ -32,10 +32,14 @@ class App extends Component {
         .includes(this.state.searchTerm.toLowerCase());
     });
 
-    return (
+    return !this.state.robotList.length ? (
+      <h1>Loading</h1>
+    ) : (
       <div className="ui container">
         <SearchBar onChange={this.onSearchChange} />
-        <RoboList robotList={newList} />
+        <Scroll>
+          <RoboList robotList={newList} />
+        </Scroll>
       </div>
     );
   }
