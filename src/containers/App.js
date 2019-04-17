@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchBar from "../component/SearchBar";
 import RoboList from "../component/RoboList";
 import Scroll from "../component/Scroll";
+import ErrorBoundary from "../component/ErrorBoundary";
 
 class App extends Component {
   state = {
@@ -38,7 +39,9 @@ class App extends Component {
       <div className="ui container">
         <SearchBar onChange={this.onSearchChange} />
         <Scroll>
-          <RoboList robotList={newList} />
+          <ErrorBoundary>
+            <RoboList robotList={newList} />
+          </ErrorBoundary>
         </Scroll>
       </div>
     );
